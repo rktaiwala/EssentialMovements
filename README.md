@@ -30,10 +30,3 @@ application below.
 `Username: admin'
 `Password: Password`
 
-
-=======================
-	License 
-=======================
-
-This is free software distributed under the terms of the MIT License
-http://opensource.org/licenses/MIT
