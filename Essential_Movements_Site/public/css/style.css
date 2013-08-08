@@ -1,0 +1,402 @@
+/*----------------------------------------------------------
+		Essential Movements CSS
+		Version 1.5
+		Created: August 2, 2013
+		For: Full Sail University (Web Final Project)  
+		Copyright (c) 2013 Ahmed Davis 
+----------------------------------------------------------*/
+
+/*--------------------- Color Swatch -----------------------
+		Orange			 				rgb(255,102,51);
+		Light Blue 						rgb(0,153,204);
+		Medium Blue(header & Footer)	rgb(53,63,71);
+		Cream 							rgb(23,46,71);
+----------------------------------------------------------*/
+
+
+/* --------------------  Web Fonts ------------------------
+		Malambo OT
+		Palatino
+		Proxima Nova 
+---------------------------------------------------------*/
+
+
+
+@font-face {
+	font-family: 'malambo_otregular';
+	src: url('../fonts/malambo/malambo_ot-webfont.eot');
+	src: url('../fonts/malambo/malambo_ot-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/malambo/malambo_ot-webfont.woff') format('woff'),
+	url('../fonts/malambo/malambo_ot-webfont.ttf') format('truetype'),
+	url('../fonts/malambo/malambo_ot-webfont.svg#malambo_otregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
+@font-face {
+	font-family: 'proxima_nova_rgregular';
+	src: url('../fonts/proxima_reg/proximanova-regular-webfont.eot');
+	src: url('../fonts/proxima_reg/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/proxima_reg/proximanova-regular-webfont.woff') format('woff'),
+	url('../fonts/proxima_reg/proximanova-regular-webfont.ttf') format('truetype'),
+	url('../fonts/proxima_reg/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
+}
+@font-face {
+	font-family: 'proxima_novasemibold';
+	src: url('../fonts/proxima_sb/proximanova-semibold-webfont.eot');
+	src: url('../fonts/proxima_sb/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),  
+	url('../fonts/proxima_sb/proximanova-semibold-webfont.woff') format('woff'),
+	url('../fonts/proxima_sb/proximanova-semibold-webfont.ttf') format('truetype'),
+	url('../fonts/proxima_sb/proximanova-semibold-webfont.svg#proxima_novasemibold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'palatinobold';
+	src: url('../fonts/palatino_b/palatino-bold-webfont.eot');
+	src: url('../fonts/palatino_b/palatino-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/palatino_b/palatino-bold-webfont.woff') format('woff'),
+	url('../fonts/palatino_b/palatino-bold-webfont.ttf') format('truetype'),
+	url('../fonts/palatino_b/palatino-bold-webfont.svg#palatinobold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'proxima_nova_rgbold';
+	src: url('../fonts/proxima_b/proximanova-bold-webfont.eot');
+	src: url('../fonts/proxima_b/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/proxima_b/proximanova-bold-webfont.woff') format('woff'),
+	url('../fonts/proxima_b/proximanova-bold-webfont.ttf') format('truetype'),
+	url('../fonts/proxima_b/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*------------------  End Font-faces  ------------------*/
+
+
+body{
+	padding: 0;
+	margin: 0;
+	background-image: url('../img/white_carbonfiber.png') !important;
+	background-repeat: repeat;
+	
+}
+#wrapper{
+	background-image: url('../img/bg.jpg');
+	width: 1020px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 40px;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius: 10px;
+}
+
+.divider{
+	color: #cccccc;
+	background-color: #cccccc;
+}
+/*----------------------- Global Nav --------------------*/
+
+.global_nav_li, 
+.global_nav_a{
+	font-family: proxima_nova_rgregular;
+	font-size: 18px;
+}
+.nav{
+	margin-right: -40px !important;
+}
+
+/*--------------------- End Global Nav ------------------*/
+
+
+/*--------------------------------    Home Page   -----------------------------------*/
+
+
+/*------------------ Search Bar Section -----------------*/
+.searchbar{
+	width:320px;
+	height:50px;
+	background-color: rgb(53,63,71);
+	border-radius: 5px;
+	margin-left: 685px;
+	margin-top: 10px;
+}
+.search_input{
+	margin-left: 30px;
+	margin-top:10px;
+}
+/*------------------ End Search Section -----------------*/
+
+
+
+/*------------------ Sidebar Section -------------------*/
+
+.home_sidebar{
+	width: 245px;
+	margin-bottom: 40px;
+	margin-left: 0;
+	margin-top: 15px;
+}
+.categories_ribbon,
+.specials_ribbon{
+	margin-left: -5px;
+}
+.categories_ribbon{
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+.specials_ribbon{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.categories_list a{
+	color: rgb(255,102,51);
+	font-family: proxima_novasemibold;
+	font-size: 18px;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;
+}
+.categories_list li, 
+.specials_list li{
+		list-style: none;
+}
+.specials_photo{
+	padding-bottom: 20px;
+}
+/*------------- End Of Sidebar Section----------------*/
+
+/*------------ Call To Action / Carousel ------------*/
+
+.cta{
+	width:710px;
+	height:320px;
+	margin-right: 15px;
+	margin-left: 300px;
+	margin-top: -895px;
+	
+}
+#myCarousel{
+	width: 710px;
+	height: 320px;
+}
+
+/*---------- End Call To Action / Carousel ----------*/
+
+/*------------- Albums / Tabbed Section -------------*/
+.tabbable{
+	width: 710px;
+	margin-left: 270px !important;
+	margin-top: -500px;
+}
+#album{
+	width: 115px;
+	height: 200px;
+	float: left;
+	margin-left: 15px;
+	padding-right: 5px;
+}
+.title{
+	line-height:2px;
+}
+.artist_name,
+.album_title{
+	font-family: proxima_novasemibold;
+	font-size: 12px;
+}
+.artist_name{
+	color: rgb(0,153,204);
+	margin-top: 10px;
+}
+.album_title{
+	color: rgb(102,102,102);
+}
+.album_year{
+	color: rgb(102,102,102);
+	font-family: proxima_nova_rgregular;
+	font-size: 12px;
+}
+.content{
+	margin-left:10px;
+}
+.nav-tabs li{
+	list-style: none;
+}
+.pagination{
+	margin-left: 15px !important;
+
+}
+#pagination_hr{
+	margin-left: 15px;
+	margin-top: -10px;
+}
+/*------------End  Albums / Tabbed Section ----------*/
+
+/*--------------------------------   End Home Page   -----------------------------------*/
+
+
+/*--------------------------------   Reviews Page   -----------------------------------*/
+
+.artist_title, 
+.reviewed_title{
+	color: rgb(0,0,0);
+	font-family: palatinobold;
+	font-size: 18px;
+}
+.reviewed_title{
+	margin-left:360px;
+}
+.album_wrapper{
+	width: 940px;
+	height: 90px;
+	margin-top: 20px;
+}
+.review_album_img{
+
+}
+.review_album_container{
+	width: 150px;
+	height: 100px;
+	margin-left: 200px;
+	margin-top: 10px;
+	line-height: 5px;
+}
+.review_artist_name{
+	color: rgb(0,153,204);
+	font-size: 14px;
+	margin-top: 5px;
+}
+.review_album_title{
+	color: rgb(102,102,102);
+	font-size: 14px;
+}
+.review_album_label,
+.review_album_year{
+	color: rgb(102,102,102);
+	font-family: proxima_nova_rgregular;
+	font-size: 12px;
+}
+.reviewer_name{
+	width: 100px;
+	margin-left: 420px;
+	margin-top: -105px;
+}
+.readmore_link{
+	color: rgb(255,102,51);
+	text-decoration: underline;
+	display: block;
+	margin-left: 630px;
+	margin-top: -30px;
+}
+.button{
+	margin-top: -15px;
+}
+/*--------------------------------   End Reviews Page   -----------------------------------*/
+
+
+/*-----------------------------------   Archives Page   -----------------------------------*/
+.archive_artist_title,
+.archive_title{
+	color: rgb(0,0,0);
+	font-family: palatinobold;
+	font-size: 18px;
+} 
+.archive_title{
+	margin-left:150px;
+}
+.archive_artist_name,
+.archive_audio_title{
+	font-family: proxima_nova_rgbold;
+	font-size: 14px;
+}
+.archive_artist_name{
+	color: rgb(0,153,204);
+	margin-left:10px;
+}
+.archive_audio_title{
+	color: rgb(0,0,0);
+	margin-left:145px;
+}
+
+/*--------------------------------   End Archives Page   -----------------------------------*/
+
+
+/*----------------------------------   Login Page   -------------------------------------*/
+.logo{
+	width: 400px;
+	height: 479px;
+	float: right;
+	margin-bottom:40px;
+	margin-left: 100px;
+	margin-top: -190px;
+}
+.logo_heading{
+	color: rgb(0,153, 204);
+	font-family: malambo_otregular;
+	font-size: 50px;
+}
+.logo_text{
+	color: rgb(0,153,204);
+	font-family: proxima_nova_rgregular;
+	font-size: 14px;
+	margin-left: 25px;
+}
+
+/*--------------------------------   End Login Page   -----------------------------------*/
+
+
+/*----------------------------------   Registration Page   -------------------------------------*/
+
+.reg_logo{
+	width: 400px;
+	height: 479px;
+	float: right;
+	margin-bottom:40px;
+	margin-left: 100px;
+	margin-top: -300px;
+}
+
+/*----------------------------------   End Registration Page -------------------------------------*/
+
+/*-----------   Footer  -----------------------*/
+.footer{
+	background-color: rgb(53,63,71);
+}
+.credit{
+	color: rgb(255,102,51);
+	font-family: proxima-novasemibold;
+	font-size: 14px;
+	margin-top: 10px;
+	margin-left: 100px;
+}
+
+/*--------  End Of Footer  -------------*/
+
+
+
+/*----------------- Media Queries  -------------------*/
+
+/*-- Tablet Protrait Size To Standard 960 (devices and browsers)*/
+@media screen and (min-width:768px) and (max-width:959px){
+
+
+}
+
+/*-- Mobile Landscape Size To Tablet Portrait (devices and browsers)*/
+@media only screen and (min-width:480px) and (max-width:767px){
+
+}
+
+/*-- Mobile Portrait Size To Mobile Landscape Size (devices and browsers)*/
+@media only screen and (max-width:479px){
+
+
+}
+
+/*------------- End Of Media Queries  ----------------*/
+
+
+
