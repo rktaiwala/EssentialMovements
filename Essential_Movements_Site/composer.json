@@ -4,7 +4,8 @@
     "keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"michelf/php-markdown": "1.3"
+		"michelf/php-markdown": "1.3",
+        "sylius/cart-bundle": "*"
 	},
 	"autoload": {
 		"classmap": [

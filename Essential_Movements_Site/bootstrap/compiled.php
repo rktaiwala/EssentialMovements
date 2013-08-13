@@ -334,7 +334,7 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
     }
     public static function getBootstrapFile()
     {
-        return '/Applications/MAMP/htdocs/LaravelTemplate/vendor/laravel/framework/src/Illuminate/Foundation' . '/start.php';
+        return '/Applications/MAMP/htdocs/LaravelTemplate/EssentialMovements/Essential_Movements_Site/vendor/laravel/framework/src/Illuminate/Foundation' . '/start.php';
     }
     public function startExceptionHandling()
     {
@@ -9963,7 +9963,7 @@ class PrettyPageHandler extends Handler
             return Handler::DONE;
         }
         if (!($resources = $this->getResourcesPath())) {
-            $resources = '/Applications/MAMP/htdocs/LaravelTemplate/vendor/filp/whoops/src/Whoops/Handler' . '/../Resources';
+            $resources = '/Applications/MAMP/htdocs/LaravelTemplate/EssentialMovements/Essential_Movements_Site/vendor/filp/whoops/src/Whoops/Handler' . '/../Resources';
         }
         $templateFile = "{$resources}/pretty-template.php";
         $cssFile = "{$resources}/pretty-page.css";
