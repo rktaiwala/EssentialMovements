@@ -19,7 +19,7 @@ class RedisStore implements StoreInterface {
 	protected $prefix;
 
 	/**
-	 * Create a new Redis store.
+	 * Create a new APC store.
 	 *
 	 * @param  \Illuminate\Redis\Database  $redis
 	 * @param  string                     $prefix

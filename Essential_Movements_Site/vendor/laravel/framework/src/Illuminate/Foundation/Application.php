@@ -32,7 +32,7 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 	 *
 	 * @var string
 	 */
-	const VERSION = '4.0.6';
+	const VERSION = '4.0.5';
 
 	/**
 	 * Indicates if the application has "booted".
@@ -84,13 +84,6 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 	protected $deferredServices = array();
 
 	/**
-	 * The request class used by the application.
-	 *
-	 * @var string
-	 */
-	protected static $requestClass = 'Illuminate\Http\Request';
-
-	/**
 	 * Create a new Illuminate application instance.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
@@ -118,7 +111,7 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 	 */
 	protected function createRequest(Request $request = null)
 	{
-		return $request ?: static::onRequest('createFromGlobals');
+		return $request ?: Request::createFromGlobals();
 	}
 
 	/**
@@ -130,9 +123,7 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 	{
 		$url = $this['config']->get('app.url', 'http://localhost');
 
-		$parameters = array($url, 'GET', array(), array(), array(), $_SERVER);
-
-		$this->instance('request', static::onRequest('create', $parameters));
+		$this->instance('request', Request::create($url, 'GET', array(), array(), array(), $_SERVER));
 	}
 
 	/**
@@ -524,10 +515,12 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 		{
 			$response = $this['events']->until('illuminate.app.down');
 
-			if ( ! is_null($response)) return $this->prepareResponse($response, $request);
+			return $this->prepareResponse($response, $request);
 		}
-		
-		return $this['router']->dispatch($this->prepareRequest($request));
+		else
+		{
+			return $this['router']->dispatch($this->prepareRequest($request));
+		}
 	}
 
 	/**
@@ -789,31 +782,6 @@ class Application extends Container implements HttpKernelInterface, ResponsePrep
 	public function setDeferredServices(array $services)
 	{
 		$this->deferredServices = $services;
-	}
-
-	/**
-	 * Get or set the request class for the application.
-	 *
-	 * @param  string  $class
-	 * @return string
-	 */
-	public static function requestClass($class = null)
-	{
-		if ( ! is_null($class)) static::$requestClass = $class;
-
-		return static::$requestClass;
-	}
-
-	/**
-	 * Call a method on the default request class.
-	 *
-	 * @param  string  $method
-	 * @param  array  $parameters
-	 * @return mixed
-	 */
-	public static function onRequest($method, $parameters = array())
-	{
-		return forward_static_call_array(array(static::requestClass(), $method), $parameters);
 	}
 
 	/**

@@ -40,12 +40,11 @@ if ( ! function_exists('app_path'))
 	/**
 	 * Get the path to the application folder.
 	 *
-	 * @param   string  $path
 	 * @return  string
 	 */
-	function app_path($path = '')
+	function app_path()
 	{
-		return app('path').($path ? '/'.$path : $path);
+		return app('path');
 	}
 }
 
@@ -403,9 +402,9 @@ if ( ! function_exists('base_path'))
 	 *
 	 * @return string
 	 */
-	function base_path($path = '')
+	function base_path()
 	{
-		return app()->make('path.base').($path ? '/'.$path : $path);
+		return app()->make('path.base');
 	}
 }
 
@@ -635,9 +634,9 @@ if ( ! function_exists('public_path'))
 	 *
 	 * @return string
 	 */
-	function public_path($path = '')
+	function public_path()
 	{
-		return app()->make('path.public').($path ? '/'.$path : $path);
+		return app()->make('path.public');
 	}
 }
 
@@ -723,9 +722,9 @@ if ( ! function_exists('storage_path'))
 	 *
 	 * @return  string
 	 */
-	function storage_path($path = '')
+	function storage_path()
 	{
-		return app('path.storage').($path ? '/'.$path : $path);
+		return app('path.storage');
 	}
 }
 

@@ -27,26 +27,15 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 	protected $hashKey;
 
 	/**
-	 * The number of seconds a reminder should last.
-	 *
-	 * @var int
-	 */
-	protected $expires;
-
-	/**
 	 * Create a new reminder repository instance.
 	 *
-	 * @param  \Illuminate\Database\Connection  $connection
-	 * @param  string  $table
-	 * @param  string  $hashKey
-	 * @param  int  $expires 
+	 * @var \Illuminate\Database\Connection  $connection
 	 * @return void
 	 */
-	public function __construct(Connection $connection, $table, $hashKey, $expires = 60)
+	public function __construct(Connection $connection, $table, $hashKey)
 	{
 		$this->table = $table;
 		$this->hashKey = $hashKey;
-		$this->expires = $expires * 60;
 		$this->connection = $connection;
 	}
 
@@ -106,7 +95,7 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 	 */
 	protected function reminderExpired($reminder)
 	{
-		$createdPlusHour = strtotime($reminder->created_at) + $this->expires;
+		$createdPlusHour = strtotime($reminder->created_at) + 3600;
 
 		return $createdPlusHour < $this->getCurrentTime();
 	}

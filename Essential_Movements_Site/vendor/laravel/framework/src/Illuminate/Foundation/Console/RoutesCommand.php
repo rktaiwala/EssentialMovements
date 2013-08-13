@@ -1,6 +1,5 @@
 <?php namespace Illuminate\Foundation\Console;
 
-use Illuminate\Routing\Router;
 use Illuminate\Console\Command;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -24,16 +23,9 @@ class RoutesCommand extends Command {
 	protected $description = 'List all registered routes';
 
 	/**
-	 * The router instance.
+	 * An array o fall registered routes.
 	 *
-	 * @var \Illuminate\Routing\Router
-	 */
-	protected $router;
-
-	/**
-	 * An array of all the registered routes.
-	 *
-	 * @var \Symfony\Component\Routing\RouteCollection
+	 * @var array
 	 */
 	protected $routes;
 
@@ -47,15 +39,14 @@ class RoutesCommand extends Command {
 	/**
 	 * Create a new route command instance.
 	 *
-	 * @param  \Illuminate\Routing\Router  $router
+	 * @param  \Symfony\Component\Routing\RouteCollection  $routes
 	 * @return void
 	 */
-	public function __construct(Router $router)
+	public function __construct(RouteCollection $routes)
 	{
 		parent::__construct();
 
-		$this->router = $router;
-		$this->routes = $router->getRoutes();
+		$this->routes = $routes;
 	}
 
 	/**
@@ -143,36 +134,12 @@ class RoutesCommand extends Command {
 	/**
 	 * Get before filters
 	 *
-	 * @param  \Illuminate\Routing\Route  $route
+	 * @param  Route  $route
 	 * @return string
 	 */
 	protected function getBeforeFilters($route)
 	{
-		$before = $route->getBeforeFilters();
-
-		$before = array_unique(array_merge($before, $this->getPatternFilters($route)));
-
-		return implode(', ', $before);
-	}
-
-	/**
-	 * Get all of the pattern filters matching the route.
-	 *
-	 * @param  \Illuminate\Routing\Route  $route
-	 * @return array
-	 */
-	protected function getPatternFilters($route)
-	{
-		$patterns = array();
-
-		foreach ($route->getMethods() as $method)
-		{
-			$inner = $this->router->findPatternFilters($method, $route->getPath());
-
-			$patterns = array_merge($patterns, $inner);
-		}
-
-		return $patterns;
+		return implode(', ',$route->getBeforeFilters());
 	}
 
 	/**

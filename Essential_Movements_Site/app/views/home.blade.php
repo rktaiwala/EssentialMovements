@@ -68,76 +68,77 @@
 
 		<div class="content tab-content">
 			<div class="tab-pane active" id="tab1">
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/223994.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
-						
-				<article class="album">
-					<img src="img/covers/222190.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
-						
-				<article class="album">
-					<img src="img/covers/222758.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
-						
-				<article class="album">
-					<img src="img/covers/221693.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
 				</div>
 						
-				<article class="album">
+				<div id="album">
+					<img src="img/covers/222190.jpg" width="115" height="90" alt=""/>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
+						
+				<div id="album">
+					<img src="img/covers/222758.jpg" width="115" height="90" alt=""/>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
+						
+				<div id="album">
+					<img src="img/covers/221693.jpg" width="115" height="90" alt=""/>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
+						
+				<div id="album">
 					<img src="img/covers/220512.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 			
+				<br />
 					
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/226447.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 						
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/226014.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 						
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/225379.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 						
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/224399.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 						
-				<article class="album">
+				<div id="album">
 					<img src="img/covers/224285.jpg" width="115" height="90" alt=""/>
-					<h1 class="title artist_name">Miles Davis</h1>
-					<h2 class="title album_title">Bitches Brew</h2>
-					<h3 class="title album_year">1968</h3>
-				</article>
+					<p class="title artist_name">Miles Davis</p>
+					<p class="title album_title">Bitches Brew</p>
+					<p class="title album_year">1968</p>
+				</div>
 			</div>
 			<div class="pagination">
 					<ul>

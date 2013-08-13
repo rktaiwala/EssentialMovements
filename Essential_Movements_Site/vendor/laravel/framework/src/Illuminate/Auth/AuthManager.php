@@ -25,21 +25,6 @@ class AuthManager extends Manager {
 	}
 
 	/**
-	 * Call a custom driver creator.
-	 *
-	 * @param  string  $driver
-	 * @return mixed
-	 */
-	protected function callCustomCreator($driver)
-	{
-		$custom = parent::callCustomCreator($driver);
-
-		if ($custom instanceof Guard) return $custom;
-
-		return new Guard($custom, $this->app['session']);
-	}
-
-	/**
 	 * Create an instance of the database driver.
 	 *
 	 * @return \Illuminate\Auth\Guard

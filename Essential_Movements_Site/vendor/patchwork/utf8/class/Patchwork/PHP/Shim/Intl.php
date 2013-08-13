@@ -69,9 +69,8 @@ class Intl
 
     static function grapheme_strlen($s)
     {
-        $s = (string) $s;
-        preg_replace('/' . GRAPHEME_CLUSTER_RX . '/u', '', $s, -1, $len);
-        return 0 === $len && '' !== $s ? null : $len;
+        preg_replace('/' . GRAPHEME_CLUSTER_RX . '/u', '', $s, -1, $s);
+        return $s;
     }
 
     static function grapheme_substr($s, $start, $len = 2147483647)

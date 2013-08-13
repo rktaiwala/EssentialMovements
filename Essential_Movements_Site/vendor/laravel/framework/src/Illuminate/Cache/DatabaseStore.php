@@ -15,7 +15,7 @@ class DatabaseStore implements StoreInterface {
 	/**
 	 * The encrypter instance.
 	 *
-	 * @var \Illuminate\Encryption\Encrypter
+	 * @param  \Illuminate\Encrypter
 	 */
 	protected $encrypter;
 
@@ -37,7 +37,7 @@ class DatabaseStore implements StoreInterface {
 	 * Create a new database store.
 	 *
 	 * @param  \Illuminate\Database\Connection  $connection
-	 * @param  \Illuminate\Encryption\Encrypter  $encrypter
+	 * @param  \Illuminate\Encrypter  $encrypter
 	 * @param  string  $table
 	 * @param  string  $prefix
 	 * @return void
@@ -197,7 +197,7 @@ class DatabaseStore implements StoreInterface {
 	/**
 	 * Get the encrypter instance.
 	 *
-	 * @return \Illuminate\Encryption\Encrypter
+	 * @return \Illuminate\Encrypter
 	 */
 	public function getEncrypter()
 	{

@@ -745,9 +745,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 
 		if ($this->softDelete)
 		{
-			$this->{static::DELETED_AT} = $time = $this->freshTimestamp();
-
-			$query->update(array(static::DELETED_AT => $this->fromDateTime($time)));
+			$query->update(array(static::DELETED_AT => $this->freshTimestamp()));
 		}
 		else
 		{
@@ -764,24 +762,9 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		if ($this->softDelete)
 		{
-			// If the restoring event does not return false, we will proceed with this
-			// restore operation. Otherwise, we bail out so the developer will stop
-			// the restore totally. We will clear the deleted timestamp and save.
-			if ($this->fireModelEvent('restoring') === false)
-			{
-				return false;
-			}
-
 			$this->{static::DELETED_AT} = null;
 
-			// Once we have saved the model, we will fire the "restored" event so this
-			// developer will do anything they need to after a restore operation is
-			// totally finished. Then we will return the result of the save call.
-			$result = $this->save();
-
-			$this->fireModelEvent('restored', false);
-
-			return $result;
+			return $this->save();
 		}
 	}
 
@@ -874,28 +857,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
-	 * Register a restoring model event with the dispatcher.
-	 *
-	 * @param  \Closure|string  $callback
-	 * @return void
-	 */
-	public static function restoring($callback)
-	{
-		static::registerModelEvent('restoring', $callback);
-	}
-
-	/**
-	 * Register a restored model event with the dispatcher.
-	 *
-	 * @param  \Closure|string  $callback
-	 * @return void
-	 */
-	public static function restored($callback)
-	{
-		static::registerModelEvent('restored', $callback);
-	}
-
-	/**
 	 * Remove all of the event listeners for the model.
 	 *
 	 * @return void
@@ -938,8 +899,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		return array(
 			'creating', 'created', 'updating', 'updated',
-			'deleting', 'deleted', 'saving', 'saved',
-			'restoring', 'restored',
+			'deleting', 'deleted', 'saving', 'saved'
 		);
 	}
 
@@ -1343,16 +1303,6 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	}
 
 	/**
-	 * Get a fresh timestamp for the model.
-	 *
-	 * @return DateTime
-	 */
-	public function freshTimestampString()
-	{
-		return $this->fromDateTime($this->freshTimestamp());
-	}
-
-	/**
 	 * Get a new query builder for the model's table.
 	 *
 	 * @param  bool  $excludeDeleted
@@ -1453,7 +1403,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		if (isset($this->table)) return $this->table;
 
-		return str_replace('\\', '', snake_case(str_plural(class_basename($this))));
+		return str_replace('\\', '', snake_case(str_plural(get_class($this))));
 	}
 
 	/**
@@ -1823,7 +1773,12 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 */
 	protected function getArrayableAttributes()
 	{
-		return $this->getArrayableItems($this->attributes);
+		if (count($this->visible) > 0)
+		{
+			return array_intersect_key($this->attributes, array_flip($this->visible));
+		}
+
+		return array_diff_key($this->attributes, array_flip($this->hidden));
 	}
 
 	/**
@@ -1835,7 +1790,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	{
 		$attributes = array();
 
-		foreach ($this->getArrayableRelations() as $key => $value)
+		foreach ($this->relations as $key => $value)
 		{
 			if (in_array($key, $this->hidden)) continue;
 
@@ -1866,39 +1821,13 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 			// If the relation value has been set, we will set it on this attributes
 			// list for returning. If it was not arrayable or null, we'll not set
 			// the value on the array because it is some type of invalid value.
-			if (isset($relation) or is_null($value))
+			if (isset($relation))
 			{
 				$attributes[$key] = $relation;
 			}
 		}
 
 		return $attributes;
-	}
-
-	/**
-	 * Get an attribute array of all arrayable relations.
-	 *
-	 * @return array
-	 */
-	protected function getArrayableRelations()
-	{
-		return $this->getArrayableItems($this->relations);
-	}
-
-	/**
-	 * Get an attribute array of all arrayable values.
-	 *
-	 * @param  array  $values
-	 * @return array
-	 */
-	protected function getArrayableItems(array $values)
-	{
-		if (count($this->visible) > 0)
-		{
-			return array_intersect_key($values, array_flip($this->visible));
-		}
-
-		return array_diff_key($values, array_flip($this->hidden));	
 	}
 
 	/**
@@ -2066,7 +1995,7 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 * @param  DateTime|int  $value
 	 * @return string
 	 */
-	public function fromDateTime($value)
+	protected function fromDateTime($value)
 	{
 		$format = $this->getDateFormat();
 
@@ -2317,13 +2246,11 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
 	 * Set the connection associated with the model.
 	 *
 	 * @param  string  $name
-	 * @return \Illuminate\Database\Eloquent\Model
+	 * @return void
 	 */
 	public function setConnection($name)
 	{
 		$this->connection = $name;
-
-		return $this;
 	}
 
 	/**

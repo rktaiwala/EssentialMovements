@@ -160,12 +160,12 @@ abstract class ServiceProvider {
 	/**
 	 * Register the package's custom Artisan commands.
 	 *
-	 * @param  array  $commands
+	 * @param  dynamic  string
 	 * @return void
 	 */
-	public function commands($commands)
+	public function commands()
 	{
-		$commands = is_array($commands) ? $commands : func_get_args();
+		$commands = func_get_args();
 
 		// To register the commands with Artisan, we will grab each of the arguments
 		// passed into the method and listen for Artisan "start" event which will

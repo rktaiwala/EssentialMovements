@@ -177,7 +177,7 @@ class Connection implements DriverConnection
     /**
      * @var integer
      */
-    protected $defaultFetchMode = PDO::FETCH_ASSOC;
+    private $_defaultFetchMode = PDO::FETCH_ASSOC;
 
     /**
      * Initializes a new instance of the Connection class.
@@ -373,7 +373,7 @@ class Connection implements DriverConnection
      */
     public function setFetchMode($fetchMode)
     {
-        $this->defaultFetchMode = $fetchMode;
+        $this->_defaultFetchMode = $fetchMode;
     }
 
     /**
@@ -648,7 +648,7 @@ class Connection implements DriverConnection
             throw DBALException::driverExceptionDuringQuery($ex, $statement);
         }
 
-        $stmt->setFetchMode($this->defaultFetchMode);
+        $stmt->setFetchMode($this->_defaultFetchMode);
 
         return $stmt;
     }
@@ -701,7 +701,7 @@ class Connection implements DriverConnection
             throw DBALException::driverExceptionDuringQuery($ex, $query, $this->resolveParams($params, $types));
         }
 
-        $stmt->setFetchMode($this->defaultFetchMode);
+        $stmt->setFetchMode($this->_defaultFetchMode);
 
         if ($logger) {
             $logger->stopQuery();
@@ -745,7 +745,7 @@ class Connection implements DriverConnection
             $stmt = new ResultCacheStatement($this->executeQuery($query, $params, $types), $resultCache, $cacheKey, $realKey, $qcp->getLifetime());
         }
 
-        $stmt->setFetchMode($this->defaultFetchMode);
+        $stmt->setFetchMode($this->_defaultFetchMode);
 
         return $stmt;
     }
@@ -810,7 +810,7 @@ class Connection implements DriverConnection
             throw DBALException::driverExceptionDuringQuery($ex, $args[0]);
         }
 
-        $statement->setFetchMode($this->defaultFetchMode);
+        $statement->setFetchMode($this->_defaultFetchMode);
 
         if ($logger) {
             $logger->stopQuery();

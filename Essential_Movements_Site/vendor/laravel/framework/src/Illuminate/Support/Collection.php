@@ -299,7 +299,7 @@ class Collection implements ArrayAccess, ArrayableInterface, Countable, Iterator
 	/**
 	 * Merge items with the collection items.
 	 *
-	 * @param  \Illuminate\Support\Collection|\Illuminate\Support\Contracts\ArrayableInterface|array  $items
+	 * @param  \Illuminate\Support\Collection|\Illuminate\Support\Contracts\ArrayableInterface|array
 	 * @return \Illuminate\Support\Collection
 	 */
 	public function merge($items)
@@ -332,19 +332,6 @@ class Collection implements ArrayAccess, ArrayableInterface, Countable, Iterator
 	}
 
 	/**
-	 * Take the first or last {$limit} items.
-	 *
-	 * @param  int  $limit
-	 * @return \Illuminate\Support\Collection
-	 */
-	public function take($limit = null)
-	{
-		if ($limit < 0) return $this->slice($limit, abs($limit));
-
-		return $this->slice(0, $limit);
-	}
-
-	/**
 	 * Get an array with the values of a given key.
 	 *
 	 * @param  string  $value
@@ -357,7 +344,7 @@ class Collection implements ArrayAccess, ArrayableInterface, Countable, Iterator
 
 		foreach ($this->items as $item)
 		{
-			$itemValue = $this->getListValue($item, $value);
+			$itemValue = is_object($item) ? $item->{$value} : $item[$value];
 
 			// If the key is "null", we will just append the value to the array and keep
 			// looping. Otherwise we will key the array using the value of the key we
@@ -368,25 +355,13 @@ class Collection implements ArrayAccess, ArrayableInterface, Countable, Iterator
 			}
 			else
 			{
-				$itemKey = $this->getListValue($item, $key);
+				$itemKey = is_object($item) ? $item->{$key} : $item[$key];
 
 				$results[$itemKey] = $itemValue;
 			}
 		}
 
 		return $results;
-	}
-
-	/**
-	 * Get the value of a list item object.
-	 *
-	 * @param  mixed  $item
-	 * @param  mixed  $key
-	 * @return mixed
-	 */
-	protected function getListValue($item, $key)
-	{
-		return is_object($item) ? object_get($item, $key) : $item[$key];
 	}
 
 	/**

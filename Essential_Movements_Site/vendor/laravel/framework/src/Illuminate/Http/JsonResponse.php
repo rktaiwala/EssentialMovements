@@ -1,7 +1,5 @@
 <?php namespace Illuminate\Http;
 
-use Illuminate\Support\Contracts\JsonableInterface;
-
 class JsonResponse extends \Symfony\Component\HttpFoundation\JsonResponse {
 
 	/**
@@ -9,7 +7,7 @@ class JsonResponse extends \Symfony\Component\HttpFoundation\JsonResponse {
 	 */
 	public function setData($data = array())
 	{
-		$this->data = $data instanceof JsonableInterface ? $data->toJson() : json_encode($data);
+		$this->data = json_encode($data);
 
 		return $this->update();
 	}
