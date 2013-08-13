@@ -14,6 +14,7 @@
 		{{ HTML::style('css/style.css') }}
 		{{ HTML::style('css/bootstrap.css') }}
 		{{ HTML::style('css/flat-ui.css')}}
+		<link rel="shortcut icon" type="image/x-icon" href="{{{ URL::to('img/favicon/favicon.ico') }}}">
 	</head>
 	<body>
 		
@@ -45,15 +46,6 @@
 								<li class="global_nav_li"><a href="{{{ URL::to('logout') }}}" class"global_nav_a">LOGOUT</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('') }}}" class="global_nav_a">CART<a/></li>
 								@endif 
-								
-									<!-- <li class="nav_main_li"><a href="{{{ URL::to('') }}}" class-"">RADIO</a></li>			
-									@if ( Auth::guest() )
-									<li class="nav_main_li">{{ HTML::link('login', 'LOGIN') }}</li>
-									@else
-									<li class="main_nav_li">{{ HTML::link('logout', 'LOGOUT') }}</li>
-									@endif -->
-								
-								
 							</ul>
 						</div>
 					</div>

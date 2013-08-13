@@ -192,10 +192,10 @@ body{
 	margin-left: 270px !important;
 	margin-top: -500px;
 }
-#album{
+.album{
 	width: 115px;
 	height: 200px;
-	float: left;
+	float: right;
 	margin-left: 15px;
 	padding-right: 5px;
 }
@@ -303,25 +303,60 @@ body{
 	color: rgb(0,0,0);
 	font-family: palatinobold;
 	font-size: 18px;
+	margin-bottom: -5px;
+}
+.archive_artist_title{
+	margin-top: -5px;
 } 
 .archive_title{
-	margin-left:150px;
+	margin-left:250px;
+	margin-top: -40px;
 }
 .archive_artist_name,
 .archive_audio_title{
 	font-family: proxima_nova_rgbold;
 	font-size: 14px;
+	
 }
 .archive_artist_name{
 	color: rgb(0,153,204);
 	margin-left:10px;
+
 }
 .archive_audio_title{
 	color: rgb(0,0,0);
 	margin-left:145px;
 }
+.archived_mix{
+	width: 940px;
+	height: 60px;
+	margin-bottom:5px;
+	margin-top:10px;
+}
+.audio_control{
+	margin-top:15px;
+}
 
 /*--------------------------------   End Archives Page   -----------------------------------*/
+
+/*-----------------------------------   Radio Page   ---------------------------------------*/
+
+.chat{
+	margin-top: 5px;
+	}
+.screen_container{
+	width: 500px;
+	height: 241px;
+}
+.chat_container{
+	width: 240px;
+	height: 241px;
+	float: right;
+	margin-top: -250px;
+}
+
+/*----------------------------------   End Radio Page   -----------------------------------*/
+
 
 
 /*----------------------------------   Login Page   -------------------------------------*/
