@@ -11,12 +11,12 @@
 |
 */
 
-
+//Navigation
 Route::get('/', 'HomeController@showWelcome');
 Route::get('reviews', 'HomeController@showReviews');
 Route::get('archives', 'HomeController@showArchives');
 Route::get('radio', 'HomeController@showRadio');
-
+Route::get('cart', 'HomeController@showCart');
 
 //Authentication
 Route::get('login', array('as' => 'login', 'uses' => 'AuthController@showLogin'));
