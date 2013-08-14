@@ -43,7 +43,7 @@
 								@else
 								<li class="global_nav_li"><a href="{{{ URL::to('radio') }}}" class"global_nav_a">RADIO</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('logout') }}}" class"global_nav_a">LOGOUT</a></li>
-								<li class="global_nav_li"><a href="{{{ URL::to('') }}}" class="global_nav_a">CART<a/></li>
+								<li class="global_nav_li"><a href="{{{ URL::to('cart') }}}" class="global_nav_a"><i class="icon-shopping-cart"></i>CART:<a/></li>
 								@endif 
 								
 									<!-- <li class="nav_main_li"><a href="{{{ URL::to('') }}}" class-"">RADIO</a></li>			
