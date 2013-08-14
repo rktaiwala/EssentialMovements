@@ -35,6 +35,10 @@ class HomeController extends BaseController {
 	{
 		return View::make('signup');
 	}
+	public function showCart()
+	{
+		return View::make('cart');
+	}
 	public function showSecret()
 	{
 		return View::make('secret');
