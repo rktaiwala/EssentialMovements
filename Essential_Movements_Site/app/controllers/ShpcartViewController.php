@@ -1,14 +1,10 @@
-<?php namespace Madlymint\Shpcart;
-
-#############################################################
-############ This file is for the examples only! ############
-#############################################################
+<?php 
 
 
 /**
  * Libraries we use.
  */
-use Shpcart\Model\Products;
+use Model\Products;
 use \View;
 use \Input;
 use \Redirect;

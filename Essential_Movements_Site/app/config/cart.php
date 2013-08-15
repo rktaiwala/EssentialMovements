@@ -39,5 +39,5 @@ return array(
 	|	- database
 	|
 	*/
-	'storage_type' => 'session'
+	'storage_type' => 'database'
 );

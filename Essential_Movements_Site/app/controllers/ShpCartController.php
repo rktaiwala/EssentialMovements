@@ -1,14 +1,8 @@
-<?php namespace Madlymint\Shpcart;
-
-#############################################################
-############ This file is for the examples only! ############
-#############################################################
-
-
+<?php 
 /**
  * Libraries we can use.
  */
-use Shpcart\Model\Products;
+use Model\Products;
 use \View;
 use \Input;
 use \Redirect;
@@ -39,7 +33,7 @@ class ShpCartController extends \Illuminate\Routing\Controllers\Controller
 
 		// Show the page.
 		//
-		return View::make('shpcart::cart.index')->with('cart_contents', $cart_contents);
+		return View::make('cart.index')->with('cart_contents', $cart_contents);
 	}
 
 	/**

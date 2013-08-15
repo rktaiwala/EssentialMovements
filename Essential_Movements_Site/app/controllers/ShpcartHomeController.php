@@ -1,14 +1,12 @@
-<?php namespace Madlymint\Shpcart;
+<?php 
 
-#############################################################
-############ This file is for the examples only! ############
-#############################################################
+
 
 
 /**
  * Libraries we can use.
  */
-use Shpcart\Model\Products;
+use Model\Products;
 use \View;
 use \Input;
 use \Redirect;
@@ -35,10 +33,10 @@ class ShpcartHomeController extends  \Illuminate\Routing\Controllers\Controller
 	{
 		// Get the products.
 		//
-		$products = Products::all();
+		$products = Product::all();
 
 		// Show the page.
 		//
-		return View::make('shpcart::home')->with('products', $products);
+		return View::make('/')->with('products', $products);
 	}
 }

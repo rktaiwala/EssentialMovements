@@ -399,7 +399,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
 
         // Sleep doesn't work as it will allow the process to handle signals and close
         // file handles from the other end.
-        $process = $this->getProcess('php -r "sleep 4"');
+        $process = $this->getProcess('php -r "while (true) {}"');
         $process->start();
 
         // PHP will deadlock when it tries to cleanup $process
@@ -444,6 +444,7 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         $duration = microtime(true) - $start;
 
         $this->assertLessThan($timeout + $precision, $duration);
+        $this->assertFalse($process->isSuccessful());
     }
 
     public function testGetPid()
@@ -481,6 +482,24 @@ abstract class AbstractProcessTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals('Caught SIGUSR1', $process->getOutput());
+    }
+
+    public function testExitCodeIsAvailableAfterSignal()
+    {
+        $this->verifyPosixIsEnabled();
+
+        $process = $this->getProcess('sleep 4');
+        $process->start();
+        $process->signal(SIGKILL);
+
+        while ($process->isRunning()) {
+            usleep(10000);
+        }
+
+        $this->assertFalse($process->isRunning());
+        $this->assertTrue($process->hasBeenSignaled());
+        $this->assertFalse($process->isSuccessful());
+        $this->assertEquals(137, $process->getExitCode());
     }
 
     /**

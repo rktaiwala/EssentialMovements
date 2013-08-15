@@ -14,14 +14,17 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
+	
+		
 	public function showWelcome()
 	{
-		return View::make('home');
+		$products = Product::all();	
+		return View::make('home', compact('products'));
 	}
 	public function showReviews()
-	{
-		return View::make('reviews');
+	{	
+		$products = Product::all();
+		return View::make('reviews', compact('products'));
 	}
 	public function showArchives()
 	{
@@ -34,10 +37,6 @@ class HomeController extends BaseController {
 	public function showSignup()
 	{
 		return View::make('signup');
-	}
-	public function showCart()
-	{
-		return View::make('cart');
 	}
 	public function showSecret()
 	{

@@ -43,17 +43,9 @@
 								@else
 								<li class="global_nav_li"><a href="{{{ URL::to('radio') }}}" class"global_nav_a">RADIO</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('logout') }}}" class"global_nav_a">LOGOUT</a></li>
-								<li class="global_nav_li"><a href="{{{ URL::to('cart') }}}" class="global_nav_a"><i class="icon-shopping-cart"></i>CART:<a/></li>
+								<li class="global_nav_li"><a href="{{{ URL::to('cart') }}}" class="global_nav_a">CART: {{ Shpcart::cart()->total_items() }}<a/></li>
 								@endif 
-								
-									<!-- <li class="nav_main_li"><a href="{{{ URL::to('') }}}" class-"">RADIO</a></li>			
-									@if ( Auth::guest() )
-									<li class="nav_main_li">{{ HTML::link('login', 'LOGIN') }}</li>
-									@else
-									<li class="main_nav_li">{{ HTML::link('logout', 'LOGOUT') }}</li>
-									@endif -->
-								
-								
+					
 							</ul>
 						</div>
 					</div>
@@ -62,19 +54,18 @@
 			<!-- End Of NavBar  -->
 			
 			
-			<!-- Success Message --> 
-			@if ($message = Session::get('success'))
-				<div class="alert alert-success alert-block">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4>Success</h4>
-					{{ $message }} 
-				</div>
-			@endif
+			
 
 			<!-- Content -->
 			@yield('content')
-
-		
+			<!-- Success Message --> 
+			
+			
+			
+			
+			
+				
+				
 
 			<div class="navbar navbar-fixed-bottom footer">
 				<p class="credit">Essental Movements &copy; 2013</p>

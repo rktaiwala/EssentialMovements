@@ -114,6 +114,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Madlymint\Shpcart\ShpcartServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
 	),
 
 	/*

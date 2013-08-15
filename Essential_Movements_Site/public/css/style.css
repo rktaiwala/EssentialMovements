@@ -108,7 +108,9 @@ body{
 .nav{
 	margin-right: -40px !important;
 }
-
+.cart_icon{
+	color: rgb(255,102,51) !important;
+}
 /*--------------------- End Global Nav ------------------*/
 
 
@@ -121,8 +123,9 @@ body{
 	height:50px;
 	background-color: rgb(53,63,71);
 	border-radius: 5px;
-	margin-left: 685px;
-	margin-top: 10px;
+	position: relative;
+	left: 685px;
+	top: 15px;
 }
 .search_input{
 	margin-left: 30px;
@@ -192,7 +195,7 @@ body{
 	margin-left: 270px !important;
 	margin-top: -500px;
 }
-#album{
+.album{
 	width: 115px;
 	height: 200px;
 	float: left;
@@ -206,6 +209,7 @@ body{
 .album_title{
 	font-family: proxima_novasemibold;
 	font-size: 12px;
+	font-weight: normal;
 }
 .artist_name{
 	color: rgb(0,153,204);
@@ -214,10 +218,11 @@ body{
 .album_title{
 	color: rgb(102,102,102);
 }
-.album_year{
-	color: rgb(102,102,102);
+.album_price{
+	color: rgb(255,102,51);
 	font-family: proxima_nova_rgregular;
 	font-size: 12px;
+	font-weight: normal;
 }
 .content{
 	margin-left:10px;
@@ -245,9 +250,14 @@ body{
 	color: rgb(0,0,0);
 	font-family: palatinobold;
 	font-size: 18px;
+	font-weight: normal;
 }
 .reviewed_title{
 	margin-left:360px;
+	margin-top:-10px;
+}
+.artist_title{
+	margin-top:-10px;
 }
 .album_wrapper{
 	width: 940px;
@@ -356,7 +366,7 @@ body{
 	float: right;
 	margin-bottom:40px;
 	margin-left: 100px;
-	margin-top: -300px;
+	margin-top: -365px;
 }
 
 /*----------------------------------   End Registration Page -------------------------------------*/

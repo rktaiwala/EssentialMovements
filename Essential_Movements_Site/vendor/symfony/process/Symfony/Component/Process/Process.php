@@ -261,7 +261,7 @@ class Process
             stream_set_blocking($pipe, false);
         }
 
-        $this->writePipes(false);
+        $this->writePipes();
         $this->updateStatus(false);
         $this->checkTimeout();
     }
@@ -313,9 +313,9 @@ class Process
         if (null !== $callback) {
             $this->callback = $this->buildCallback($callback);
         }
-        while ($this->processInformation['running']) {
-            $this->updateStatus(true);
+        while ($this->pipes || (defined('PHP_WINDOWS_VERSION_BUILD') && $this->fileHandles)) {
             $this->checkTimeout();
+            $this->readPipes(true);
         }
         $this->updateStatus(false);
         if ($this->processInformation['signaled']) {
@@ -332,20 +332,12 @@ class Process
             usleep(1000);
         }
 
-        $exitcode = proc_close($this->process);
-
         if ($this->processInformation['signaled']) {
             if ($this->isSigchildEnabled()) {
                 throw new RuntimeException('The process has been signaled.');
             }
 
             throw new RuntimeException(sprintf('The process has been signaled with signal "%s".', $this->processInformation['termsig']));
-        }
-
-        $this->exitcode = $this->processInformation['running'] ? $exitcode : $this->processInformation['exitcode'];
-
-        if (-1 == $this->exitcode && null !== $this->fallbackExitcode) {
-            $this->exitcode = $this->fallbackExitcode;
         }
 
         return $this->exitcode;
@@ -654,9 +646,9 @@ class Process
         $timeoutMicro = microtime(true) + $timeout;
         if ($this->isRunning()) {
             proc_terminate($this->process);
-            while ($this->isRunning() && microtime(true) < $timeoutMicro) {
+            do {
                 usleep(1000);
-            }
+            } while ($this->isRunning() && microtime(true) < $timeoutMicro);
 
             if ($this->isRunning() && !$this->isSigchildEnabled()) {
                 if (null !== $signal || defined('SIGKILL')) {
@@ -664,20 +656,7 @@ class Process
                 }
             }
 
-            foreach ($this->pipes as $pipe) {
-                fclose($pipe);
-            }
-            $this->pipes = array();
-
-            $exitcode = proc_close($this->process);
-            $this->exitcode = -1 === $this->processInformation['exitcode'] ? $exitcode : $this->processInformation['exitcode'];
-
-            if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-                foreach ($this->fileHandles as $fileHandle) {
-                    fclose($fileHandle);
-                }
-                $this->fileHandles = array();
-            }
+            $this->updateStatus(false);
         }
         $this->status = self::STATUS_TERMINATED;
 
@@ -1070,11 +1049,10 @@ class Process
         $this->readPipes($blocking);
 
         $this->processInformation = proc_get_status($this->process);
+        $this->captureExitCode();
         if (!$this->processInformation['running']) {
+            $this->close();
             $this->status = self::STATUS_TERMINATED;
-            if (-1 !== $this->processInformation['exitcode']) {
-                $this->exitcode = $this->processInformation['exitcode'];
-            }
         }
     }
 
@@ -1162,23 +1140,7 @@ class Process
                 return;
             }
 
-            foreach ($r as $pipe) {
-                $type = array_search($pipe, $this->pipes);
-                $data = fread($pipe, 8192);
-
-                if (strlen($data) > 0) {
-                    // last exit code is output and caught to work around --enable-sigchild
-                    if (3 == $type) {
-                        $this->fallbackExitcode = (int) $data;
-                    } else {
-                        call_user_func($this->callback, $type == 1 ? self::OUT : self::ERR, $data);
-                    }
-                }
-                if (false === $data || feof($pipe)) {
-                    fclose($pipe);
-                    unset($this->pipes[$type]);
-                }
-            }
+            $this->processReadPipes($r);
         }
     }
 
@@ -1187,7 +1149,7 @@ class Process
      *
      * @param Boolean $blocking Whether to use blocking calls or not.
      */
-    private function writePipes($blocking)
+    private function writePipes()
     {
         if ($this->tty) {
             $this->status = self::STATUS_TERMINATED;
@@ -1208,7 +1170,11 @@ class Process
         $stdinOffset = 0;
 
         while ($writePipes) {
-            $r = array();
+            if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+                $this->processFileHandles();
+            }
+
+            $r = $this->pipes;
             $w = $writePipes;
             $e = null;
 
@@ -1235,6 +1201,83 @@ class Process
                     $writePipes = null;
                 }
             }
+
+            $this->processReadPipes($r);
         }
+    }
+
+    /**
+     * Processes read pipes, executes callback on it.
+     *
+     * @param array $pipes
+     */
+    private function processReadPipes(array $pipes)
+    {
+        foreach ($pipes as $pipe) {
+            $type = array_search($pipe, $this->pipes);
+            $data = fread($pipe, 8192);
+
+            if (strlen($data) > 0) {
+                // last exit code is output and caught to work around --enable-sigchild
+                if (3 == $type) {
+                    $this->fallbackExitcode = (int) $data;
+                } else {
+                    call_user_func($this->callback, $type == 1 ? self::OUT : self::ERR, $data);
+                }
+            }
+            if (false === $data || feof($pipe)) {
+                fclose($pipe);
+                unset($this->pipes[$type]);
+            }
+        }
+    }
+
+    /**
+     * Captures the exitcode if mentioned in the process informations.
+     */
+    private function captureExitCode()
+    {
+        if (isset($this->processInformation['exitcode']) && -1 != $this->processInformation['exitcode']) {
+            $this->exitcode = $this->processInformation['exitcode'];
+        }
+    }
+
+
+    /**
+     * Closes process resource, closes file handles, sets the exitcode.
+     *
+     * @return Integer The exitcode
+     */
+    private function close()
+    {
+        foreach ($this->pipes as $pipe) {
+            fclose($pipe);
+        }
+
+        $this->pipes = null;
+        $exitcode = -1;
+
+        if (is_resource($this->process)) {
+            $exitcode = proc_close($this->process);
+        }
+
+        $this->exitcode = $this->exitcode !== null ? $this->exitcode : -1;
+        $this->exitcode = -1 != $exitcode ? $exitcode : $this->exitcode;
+
+        if (-1 == $this->exitcode && null !== $this->fallbackExitcode) {
+            $this->exitcode = $this->fallbackExitcode;
+        } elseif (-1 === $this->exitcode && $this->processInformation['signaled'] && 0 < $this->processInformation['termsig']) {
+            // if process has been signaled, no exitcode but a valid termsig, apply unix convention
+            $this->exitcode = 128 + $this->processInformation['termsig'];
+        }
+
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            foreach ($this->fileHandles as $fileHandle) {
+                fclose($fileHandle);
+            }
+            $this->fileHandles = array();
+        }
+
+        return $this->exitcode;
     }
 }
