@@ -16,13 +16,12 @@ database you then need to configure the application to work with the
 database, which can be located at app/config/database.php.
 
 =====================
-       Logins
+       User Logins
 =====================
 
 Logging into accounts requires a first name, last name, user name, and email address. 
 You will find the proper credentials for loggin in to the 
 application below. 
-
 
 -------------
  User Login
@@ -30,3 +29,14 @@ application below.
 `Username: admin'
 `Password: Password`
 
+======================
+	User Registration 
+======================
+
+All form fields are required in the user registration form.  
+
+======================
+	Licence
+======================
+
+	Proprietary 
