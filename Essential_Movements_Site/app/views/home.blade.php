@@ -79,9 +79,9 @@
 			<div class="tab-pane active" id="tab1">
 				@foreach($products as $product)
 					<article class="album">
-						<img src="{{ $product->image }}" width="115" height="90" alt=""/>
+						<a href="{{ URL::to('cartview/' . $product->id) }}"><img src="{{ $product->image }}" width="115" height="90" alt=""/>
 						<h1 class="title artist_name">{{ $product->artist }}</h1>
-						<h2 class="title album_title">{{ $product->name }}</h2>
+						<a href="{{ URL::to('cartview/' . $product->id) }}"><h2 class="title album_title">{{ $product->name }}</h2></a>
 						<h3 class="title album_price">${{ $product->price }}</h3>
 					</article>
 				@endforeach

@@ -8,7 +8,7 @@
 /**
  * Libraries we use.
  */
-use Shpcart\Model\Products;
+use \Product;
 use \View;
 use \Input;
 use \Redirect;
@@ -36,7 +36,7 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 	{
 		// Check if the product exists.
 		//
-		if ( ! $product = Products::find($product_slug))
+		if ( ! $product = Product::find($product_slug))
 		{
 			// Redirect back to the home page.
 			//
@@ -63,7 +63,7 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 
 		// Get the static list of products.
 		//
-		$products = Products::all();
+		$products = Product::all();
 
 		// Retrieve some data.
 		//

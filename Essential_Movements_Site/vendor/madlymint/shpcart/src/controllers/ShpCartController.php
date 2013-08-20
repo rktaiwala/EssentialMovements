@@ -8,7 +8,7 @@
 /**
  * Libraries we can use.
  */
-use Shpcart\Model\Products;
+use \Product;
 use \View;
 use \Input;
 use \Redirect;

@@ -9,7 +9,7 @@
 /**
  * Libraries we use.
  */
-use Shpcart\Model\Products;
+use \Product;
 use \View;
 use \Input;
 use \Redirect;
