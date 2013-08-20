@@ -36,10 +36,10 @@ Route::get('wiki/{page}', 'WikiController@showPage');
 
 // Shopping Cart Routes
 
-Route::controller('cartview/{any}', 'ShpcartViewController');
-Route::controller('shpcart', 'ShpcartHomeController');
+// Route::controller('cartview/{any}', 'ShpcartViewController');
+// Route::controller('shpcart', 'ShpcartHomeController');
 // Route::controller('wishlist', 'ShpcartWishlistController');
-Route::controller('cart', 'ShpCartController');
+// Route::controller('cart', 'ShpCartController');
 
 
 

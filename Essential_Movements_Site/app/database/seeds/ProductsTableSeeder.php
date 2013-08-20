@@ -16,7 +16,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/223994.jpg',
 				'price'   => '10.00',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -29,7 +29,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/222190.jpg',
 				'price'   => '5.00',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -42,7 +42,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/222758.jpg',
 				'price'   => '6.99',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -55,7 +55,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/221693.jpg',
 				'price'   => '8.00',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -81,7 +81,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/226447.jpg',
 				'price'   => '9.99',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -94,7 +94,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/226014.jpg',
 				'price'   => '5.00',
 				'qty'	  => '1',
-				'option'  => 'WAV',
+				'options'  => 'WAV',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -107,7 +107,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/225379.jpg',
 				'price'	  => '8.99',
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -120,7 +120,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/224399.jpg',
 				'price'	  => '10.00',
 				'qty'	  => '1',
-				'option'  => 'WAV',
+				'options'  => 'WAV',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			],
@@ -133,7 +133,7 @@ class ProductsTableSeeder extends Seeder {
 				'image'	  => 'img/covers/224285.jpg',
 				'price'	  => '10.00', 
 				'qty'	  => '1',
-				'option'  => 'MP3',
+				'options'  => 'MP3',
 				'created_at' => new DateTime, 
 				'updated_at' => new DateTime
 			]

@@ -19,6 +19,7 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		$products = Product::all();	
+
 		return View::make('home', compact('products'));
 	}
 	public function showReviews()
@@ -37,6 +38,15 @@ class HomeController extends BaseController {
 	public function showSignup()
 	{
 		return View::make('signup');
+	}
+	public function showItem()
+	{
+
+		return View::make('item');
+	}
+	public function showCart()
+	{
+		$products = Product::all('');
 	}
 	public function showSecret()
 	{

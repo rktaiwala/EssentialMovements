@@ -14,29 +14,33 @@
 		{{ HTML::style('css/style.css') }}
 		{{ HTML::style('css/bootstrap.css') }}
 		{{ HTML::style('css/flat-ui.css')}}
+		<script type="text/javascript">
+			swfobject.registerObject("myFlashPlayer", "9.0.0", "../flash/expressInstall.swf");
+		</script>
+
 	</head>
 	<body>
 		
-			<!-- Navbar -->
-			<div class="navbar navbar-inverse navbar-fixed-top">
-				<div class="navbar-inner">
-					<div class="container">
-						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-							<span class="icon-bar"</span>
-							<span class="icon-bar"</span>
-							<span class="icon-bar"</span>
-						</button>
+		<!-- Navbar -->
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"</span>
+						<span class="icon-bar"</span>
+						<span class="icon-bar"</span>
+					</button>
 
-						<a class="brand" href="{{{ URL::to('/') }}}">Essential Movements</a>
+					<a class="brand" href="{{{ URL::to('/') }}}">Essential Movements</a>
 
-						<!-- Everything you want hidden at 940px or less, place within here -->
-						<div class="nav-collapse collapse">
-							<ul class="nav pull-right">
+					<!-- Everything you want hidden at 940px or less, place within here -->
+					<div class="nav-collapse collapse">
+						<ul class="nav pull-right">
 								
-								<li class="global_nav_li"><a href="{{{ URL::to('reviews') }}}" class="global_nav_a">REVIEWS</a></li>
-								<li class="global_nav_li"><a href="{{{ URL::to('archives') }}}" class="global_nav_a">ARCHIVES</a></li>
+							<li class="global_nav_li"><a href="{{{ URL::to('reviews') }}}" class="global_nav_a">REVIEWS</a></li>
+							<li class="global_nav_li"><a href="{{{ URL::to('archives') }}}" class="global_nav_a">ARCHIVES</a></li>
 							
-								@if( Auth::guest() )
+							@if( Auth::guest() )
 									
 								<li class="global_nav_li"><a href="{{{ URL::to('login') }}}" class"global_nav_a">LOGIN</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('signup') }}}" class="global_nav_a">SIGNUP</a></li>
@@ -44,35 +48,24 @@
 								<li class="global_nav_li"><a href="{{{ URL::to('radio') }}}" class"global_nav_a">RADIO</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('logout') }}}" class"global_nav_a">LOGOUT</a></li>
 								<li class="global_nav_li"><a href="{{{ URL::to('cart') }}}" class="global_nav_a">CART: {{ Shpcart::cart()->total_items() }}<a/></li>
-								@endif 
+							@endif 
 					
-							</ul>
-						</div>
+						</ul>
 					</div>
 				</div>
 			</div>
-			<!-- End Of NavBar  -->
+		</div>
+		<!-- End Of NavBar  -->
 			
-			
-			
-
-			<!-- Content -->
-			@yield('content')
-			<!-- Success Message --> 
-			
-			
-			
-			
-			
-				
-				
-
-			<div class="navbar navbar-fixed-bottom footer">
-				<p class="credit">Essental Movements &copy; 2013</p>
-			</div>
+		<!-- Content -->
+		@yield('content')
+		 
+		<div class="navbar navbar-fixed-bottom footer">
+			<p class="credit">Essental Movements &copy; 2013</p>
+		</div>
 		
 		<!-- Scripts Are Placed Here -->
-		
+		{{ HTML::script('js/swfobject.js')}}
 		{{ HTML::script('js/jquery-1.10.1.min.js') }}
 		{{ HTML::script('js/jquery-1.10.1.js') }}
 		{{ HTML::script('js/bootstrap-transition.js') }}

@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration {
 			$table->string('image')->unique();
 			$table->decimal('price');
 			$table->integer('qty');
-			$table->string('option');
+			$table->string('options');
 
 			$table->timestamps();
 		});
