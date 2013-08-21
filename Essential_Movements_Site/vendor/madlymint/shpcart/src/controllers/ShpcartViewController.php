@@ -78,7 +78,7 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 		// Populate a proper item array.
 		//
 		$item = array(
-			'id'      => $info['id'],
+			'id'      => $item_id,
 			'qty'     => $qty,
 			'price'   => $info['price'],
 			'name'    => $info['name'],

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateProductsTable extends Migration {
 
@@ -12,17 +12,17 @@ class CreateProductsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('products', function(Blueprint $table) {
+		Schema::create('products', function(Blueprint $table)
+		{
 			$table->string('id')->unique();
 			$table->string('name');
 			$table->string('artist');
 			$table->string('label');
-			$table->year('year');
+			$table->string('year');
 			$table->string('image')->unique();
 			$table->decimal('price');
 			$table->integer('qty');
-			$table->string('options');
-
+			$table->string('option');
 			$table->timestamps();
 		});
 	}
