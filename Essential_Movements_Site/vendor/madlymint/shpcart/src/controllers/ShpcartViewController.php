@@ -64,10 +64,11 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 		// Get the static list of products.
 		//
 		$products = Product::all();
+		print_r($products);
 
 		// Retrieve some data.
 		//
-		$item_id = Input::get('item_id');
+		/*$item_id = Input::get('item_id');
 		$qty     = Input::get('qty');
 		$options = Input::get('options', array());
 
@@ -246,6 +247,6 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 
 		// Invalid action, redirect to the home page.
 		//
-		return Redirect::to('shpcart');
+		return Redirect::to('shpcart');*/
 	}
 }
