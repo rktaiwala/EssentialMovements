@@ -63,18 +63,20 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 
 		// Get the static list of products.
 		//
-		$products = Product::all();
-		print_r($products);
+		//$products = Product::all()->toArray();
+		//print_r($products);
 
 		// Retrieve some data.
 		//
-		/*$item_id = Input::get('item_id');
+		$item_id = Input::get('item_id');
 		$qty     = Input::get('qty');
 		$options = Input::get('options', array());
 
 		// Get the product information.
 		//
-		$info = $products[ $item_id ];
+		$info = Product::find($item_id);//$products[ $item_id ];
+		echo $info;
+		/*
 
 		// Populate a proper item array.
 		//
