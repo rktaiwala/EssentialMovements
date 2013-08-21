@@ -75,17 +75,17 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 		// Get the product information.
 		//
 		$info = Product::find($item_id);//$products[ $item_id ];
-		echo $info;
-		/*
+		//echo $info;
+		
 
 		// Populate a proper item array.
 		//
 		$item = array(
 			'id'      => $item_id,
 			'qty'     => $qty,
-			'price'   => $info['price'],
-			'name'    => $info['name'],
-			'image'   => $info['image'],
+			'price'   => $info->price,
+			'name'    => $info->name,
+			'image'   => $info->image,
 			'options' => $options
 		);
 
@@ -249,6 +249,6 @@ class ShpcartViewController extends \Illuminate\Routing\Controllers\Controller
 
 		// Invalid action, redirect to the home page.
 		//
-		return Redirect::to('shpcart');*/
+		return Redirect::to('shpcart');
 	}
 }
